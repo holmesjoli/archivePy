@@ -7,7 +7,7 @@ def setup():
 	"""
 	Sets up the ability to make automated commits
 	"""
-        
+	
 	print("Running git to add and commit")
 	os.environ["PATH"] += os.pathsep + "../PortableGit/bin/"
 	g = git.cmd.Git(os.getcwd())
@@ -43,5 +43,5 @@ if __name__ == "__main__":
 	cr = git_commit(g, "test message")
 	ct = parse_commit_result(cr)
 	print(ct)
-```
+
 
