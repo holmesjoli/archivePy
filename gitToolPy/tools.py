@@ -6,17 +6,17 @@ import subprocess
 
 class auto_commit(object):
 
-	def __init__(self, message, opts):
+	def __init__(self, commit_message, add_message):
 		"""
 
 		Initiates the auto commit class
-		:param message: the commit message
-		:type message: string
+		:param commit_message: the commit message
+		:type commit_message: string
 		"""
 		os.environ["PATH"] += os.pathsep + "../PortableGit/bin/"
 
-		self.message = message
-		self.add_message = opts["add_message"]
+		self.commit_message = commit_message
+		self.add_message = add_message
 
 		self.g = git.cmd.Git(os.getcwd())
 		self.repo = Repo(os.getcwd())
@@ -39,7 +39,7 @@ class auto_commit(object):
 
 		self.check_master()
 		self.g.add("--a")
-		self.commit_result = self.g.commit("--m", self.message, "--allow-empty")
+		self.commit_result = self.g.commit("--m", self.commit_message, "--allow-empty")
 		self.g.push("origin", self.branch)
 
 	def parse_commit_result(self):
@@ -48,6 +48,6 @@ class auto_commit(object):
 		self.hash = self.commit_result[self.commit_result.find("[")+1:self.commit_result.find("]")].split()[1]
 
 		if self.add_message: 
-			self.commit = "{}_{}_{}".format(self.branch, self.hash, self.message)
+			self.commit = "{}_{}_{}".format(self.branch, self.hash, self.commit_message)
 		else:
 			self.commit = "{}_{}".format(self.branch, self.hash)
