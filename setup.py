@@ -13,6 +13,6 @@ setuptools.setup(
     long_description_content_type = "text/markdown",
     url = "https://github.com/holmesjoli/gitToolPy",
     packages = setuptools.find_packages(),
-    install_requires = []
+    install_requires = ["GitPython"]
 )
 
