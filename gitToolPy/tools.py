@@ -52,6 +52,6 @@ class auto_commit(object):
 		else:
 			self.commit_tag = "{}_{}".format(self.branch, self.hash)
 
-ac = auto_commit("test message2", {"add_message": False})
+ac = auto_commit("test message2", {"add_message": True})
 
 import pdb; pdb.set_trace()
