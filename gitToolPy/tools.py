@@ -48,10 +48,6 @@ class auto_commit(object):
 		self.hash = self.commit_result[self.commit_result.find("[")+1:self.commit_result.find("]")].split()[1]
 
 		if self.add_message: 
-			self.commit_tag = "{}_{}_{}".format(self.branch, self.hash, self.message)
+			self.commit = "{}_{}_{}".format(self.branch, self.hash, self.message)
 		else:
-			self.commit_tag = "{}_{}".format(self.branch, self.hash)
-
-ac = auto_commit("test message2", {"add_message": True})
-
-import pdb; pdb.set_trace()
+			self.commit = "{}_{}".format(self.branch, self.hash)
