@@ -26,7 +26,7 @@ class auto_commit(object):
 	def check_master(self):
 		"""Checks to see if the master branch is active"""
 
-		self.branch = self.repo.active_branch
+		self.branch = self.repo.active_branch.name
 		
 		if self.branch != "master":
 			ui = int(input("Master branch is not active. Continue? \n1:Yes \n2:No\n"))
