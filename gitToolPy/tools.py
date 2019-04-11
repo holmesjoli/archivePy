@@ -1,47 +1,57 @@
 import git
+from git import Repo
 import os
 import re
 import subprocess
 
-def setUp():
-	"""
-	Sets up the ability to make automated commits
-	"""
+class auto_commit(object):
 
-	print("Running git to add and commit")
-	os.environ["PATH"] += os.pathsep + "../PortableGit/bin/"
-	g = git.cmd.Git(os.getcwd())
-	return g
+	def __init__(self, message, opts):
+		"""
 
-def auto_commit(g, message):
-	"""
-	Adds and commits message then pushes to the branch it's on.
-	:param message: the commit message
-	:type message: string
-	"""
-	if not message:
-		raise ValueError("--commit_message not set in arguments")
-	g.add("--a")
-	commit_result = g.commit("--m", message, "--allow-empty")
-	g.push("origin", "master")
-	return commit_result
+		Initiates the auto commit class
+		:param message: the commit message
+		:type message: string
+		"""
+		os.environ["PATH"] += os.pathsep + "../PortableGit/bin/"
 
-def parse_commit_result(commit_result):
-	"""
-	Parses the commit result and returns the branch and commit id as a string
-	:param commit_result: the commit result from the git push
-	:type commit_result: string
-	"""
-	commit_branch = commit_result[commit_result.find("[")+1:commit_result.find("]")].split()
-	branch = commit_branch[0]
-	commit = commit_branch[1]
-	commit_tag = "{}_{}".format(branch, commit)
-	return commit_tag
+		self.message = message
+		self.add_message = opts["add_message"]
 
-if __name__ == "__main__":
-	g = setUp()
-	cr = auto_commit(g, "test message")
-	ct = parse_commit_result(cr)
-	print(ct)
+		self.g = git.cmd.Git(os.getcwd())
+		self.repo = Repo(os.getcwd())
+		self.auto_commit()
+		self.parse_commit_result()
 
+	def check_master(self):
+		"""Checks to see if the master branch is active"""
 
+		self.branch = self.repo.active_branch
+		
+		if self.branch != "master":
+			ui = int(input("Master branch is not active. Continue? \n1:Yes \n2:No\n"))
+
+			while(ui not in [1,2]): 
+				ui = input("Please select 1 or 2")
+		
+	def auto_commit(self):
+		"""Adds and commits message then pushes to the branch it's on."""
+
+		self.g.add("--a")
+		self.commit_result = self.g.commit("--m", self.message, "--allow-empty")
+		self.g.push("origin", self.branch)
+
+	def parse_commit_result(self):
+		"""Parses the commit result and returns the branch and commit id as a string."""
+
+		self.check_master()
+		self.hash = self.commit_result[self.commit_result.find("[")+1:self.commit_result.find("]")].split()[1]
+
+		if self.add_message: 
+			self.commit_tag = "{}_{}_{}".format(self.branch, self.hash, self.message)
+		else:
+			self.commit_tag = "{}_{}".format(self.branch, self.hash)
+
+ac = auto_commit("test message2", {"add_message": False})
+
+import pdb; pdb.set_trace()
