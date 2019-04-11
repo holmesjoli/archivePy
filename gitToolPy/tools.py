@@ -37,6 +37,7 @@ class auto_commit(object):
 	def auto_commit(self):
 		"""Adds and commits message then pushes to the branch it's on."""
 
+		self.check_master()
 		self.g.add("--a")
 		self.commit_result = self.g.commit("--m", self.message, "--allow-empty")
 		self.g.push("origin", self.branch)
@@ -44,7 +45,6 @@ class auto_commit(object):
 	def parse_commit_result(self):
 		"""Parses the commit result and returns the branch and commit id as a string."""
 
-		self.check_master()
 		self.hash = self.commit_result[self.commit_result.find("[")+1:self.commit_result.find("]")].split()[1]
 
 		if self.add_message: 
