@@ -3,17 +3,17 @@ import os
 import re
 import subprocess
 
-def setup():
+def setUp():
 	"""
 	Sets up the ability to make automated commits
 	"""
-	
+
 	print("Running git to add and commit")
 	os.environ["PATH"] += os.pathsep + "../PortableGit/bin/"
 	g = git.cmd.Git(os.getcwd())
 	return g
 
-def git_commit(g, message):
+def auto_commit(g, message):
 	"""
 	Adds and commits message then pushes to the branch it's on.
 	:param message: the commit message
@@ -39,8 +39,8 @@ def parse_commit_result(commit_result):
 	return commit_tag
 
 if __name__ == "__main__":
-	g = setup()
-	cr = git_commit(g, "test message")
+	g = setUp()
+	cr = auto_commit(g, "test message")
 	ct = parse_commit_result(cr)
 	print(ct)
 
