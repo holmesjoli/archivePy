@@ -3,6 +3,9 @@ from git import Repo
 import os
 import re
 import subprocess
+import zipfile
+
+import pandas as pd
 
 class auto_commit(object):
 
@@ -60,3 +63,25 @@ class auto_commit(object):
 			self.commit = "{}_{}".format(self.branch, self.commit)
 
 
+class extract_archive(object):
+
+	def __init__(self, commit, pth, fl):
+		"""
+		Parses an archive to extract a specific commit
+		:param commit: the commit to identify which zip file in an archive
+		:type commit: str
+		:param pth: the path to the data archives
+		:type pth: str
+		:param fl: the file to extract from the archive
+		:type fl: str
+		"""
+		
+		fls = os.listdir(pth)
+		zip_archive = [fl for fl in fls if commit in fl][0]
+
+		archive = zipfile.ZipFile(os.path.join(pth, zip_archive), 'r')
+
+		if fl.endswith(".csv"):
+			self.df = pd.read_csv(archive.open(fl))
+		else:
+			raise Exception("Expecting .csv file extension")
