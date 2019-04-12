@@ -20,7 +20,7 @@ class auto_commit(object):
 
 		self.g = git.cmd.Git(os.getcwd())
 		self.repo = Repo(os.getcwd())
-		self.auto_commit()
+		self.add_commit()
 		self.parse_commit_result()
 
 	def check_master(self):
@@ -34,7 +34,7 @@ class auto_commit(object):
 			while(ui not in [1,2]): 
 				ui = input("Please select 1 or 2")
 		
-	def auto_commit(self):
+	def add_commit(self):
 		"""Adds and commits message then pushes to the branch it's on."""
 
 		self.check_master()
