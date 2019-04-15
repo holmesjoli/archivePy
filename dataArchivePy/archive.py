@@ -41,7 +41,7 @@ class archive_files(archive_folders):
     
     def move_to_current(self):
         """Moves the files to the Current folder"""
-        
+
         [os.remove(os.path.join(self.current_dir, fl)) for fl in os.listdir(self.current_dir)]
         [shutil.move(fl, os.path.join(self.current_dir, os.path.basename(fl))) for fl in self.archive_fls]
         
@@ -63,21 +63,21 @@ class archive_files(archive_folders):
 
 class extract_archive(object):
 
-	def __init__(self, commit, output_dir, fl):
+	def __init__(self, commit, archive_dir, fl):
 		"""
 		Parses an archive to extract a specific commit
 		:param commit: the commit id 
 		:type commit: str
-		:param output_dir: the path to the data archives
-		:type output_dir: str
+		:param archive_dir: the path to the data archives
+		:type archive_dir: str
 		:param fl: the file to extract from the archive
 		:type fl: str
 		"""
 
-		fls = os.listdir(output_dir)
+		fls = os.listdir(archive_dir)
 		zip_archive = [fl for fl in fls if commit in fl][0]
 
-		archive = zipfile.ZipFile(os.path.join(output_dir, zip_archive), 'r')
+		archive = zipfile.ZipFile(os.path.join(archive_dir, zip_archive), 'r')
 
 		if fl.endswith(".csv"):
 			self.df = pd.read_csv(archive.open(fl))
