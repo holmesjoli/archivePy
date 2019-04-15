@@ -28,21 +28,54 @@ Deliverables/
         master_90r68d.zip
 ```
 
-### Example Code
+### Commit and Archive
 
 ```
+import os
 import pandas as pd
 import numpy as np
 
-df = pd.DataFrame({"col1": [1,2,3,4],
-                   "col2": ["a", "b", "c", "d"]})
+from dataArchivePy.archive import archive_files, extract_archive
+from dataArchivePy.gitTools import auto_commit
+from dataArchivePy.cli_args import parseArguments
 
-df_copy = df.copy()
-df_copy["new_col"] = np.where(df_copy["col1"] > 1, 1, 0)
+class main(object):
 
+    def __init__(self, opts):
+        """
+        Initiates the main function, which does data management and then calls 
+        to autocommit and archive the data
+        """
 
+        self.df = pd.DataFrame({"col1": [1,2,3,4],
+                                "col2": ["a", "b", "c", "d"]})
 
+        self.output_dir = "./dataArchivePy/tests/test_archive"
+        self.archive_fls = ["./dataArchivePy/tests/test_archive/data.csv"]
+
+        self.dm()
+
+        ac = auto_commit(opts)
+        archive_files(ac.commit, self.output_dir, self.archive_fls).archive()
+
+    def dm(self):
+        """
+        Performs data management steps
+        """
+
+        self.df_copy = self.df.copy()
+        self.df_copy["new_col"] = np.where(self.df_copy["col1"] > 1, 1, 0)
+        self.df_copy.to_csv(os.path.join(self.archive_fls[0]))
+
+if __name__ == "__main__":
+
+    opts = parseArguments()
+    main(opts)
 ```
 
-1. Naviate the repositories root
-2. `python dataArchivePy/test.py -ab -am -c "April Monthly"`
+1. Naviate the repository's root directory
+2. In the command line type: `python dataArchivePy/test.py -ab -am -c "April Monthly"`
+
+* You must add `-c "Commit Message"` otherwise the script will throw an error message
+* `--add_branch` (`-ab`) is an optional argument. Adding `-ab` will add the branch to the beginning of the archive zip filename. 
+* `--add_message` (`-am`) is an option argument. Adding `-am` will add the commit message to the end of the archive zip filename.
