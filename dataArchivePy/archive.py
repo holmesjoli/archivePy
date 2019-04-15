@@ -3,17 +3,17 @@ import shutil
 import pandas as pd
 import zipfile
 
-from utilsPy.folder_structure import create_dirs
+from utilsPy.folder_structure import create_dirs, remove_files
 
 class archive_folders(object):
 
-    def __init__(self):
+    def __init__(self, output_pth):
         """
         The folders to create in the archiving process
         """
         
-        self.archive_dir = "Archive"
-        self.current_dir = "Current"
+        self.archive_dir = os.path.join(output_pth, "Archive")
+        self.current_dir = os.path.join(output_pth, "Current")
         self.archive_dirs = [self.archive_dir, self.current_dir]
 
 class archive_files(archive_folders):
@@ -29,7 +29,7 @@ class archive_files(archive_folders):
         :type archive_fls: list
         """
         
-        archive_folders.__init__(self)
+        archive_folders.__init__(self, output_pth)
         self.commit = commit
         self.output_pth = output_pth
         self.archive_fls = archive_fls
@@ -58,7 +58,8 @@ class archive_files(archive_folders):
         shutil.move(self.zipped_fl , os.path.join(self.output_pth, self.archive_dir, self.zipped_fl))
 
     def archive(self):
-        
+        """Combines all the archiving steps"""
+
         self.create_archive_str()
         self.move_to_current()
         self.create_archive()
