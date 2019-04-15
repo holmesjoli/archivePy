@@ -4,12 +4,11 @@ import os
 import re
 import subprocess
 
-class auto_commit(object):
+class options(object):
 
-	def __init__(self, message, add_message, add_branch):
+	def __init__(self, opts):
 		"""
-
-		Initiates the auto commit class
+		Initiates the options class
 		:param message: the commit message
 		:type message: string
 		:param add_message: indicator for if the message should be added to the commit
@@ -18,11 +17,25 @@ class auto_commit(object):
 		:type add_branch: boolean
 		"""
 		
-		os.environ["PATH"] += os.pathsep + "../PortableGit/bin/"
+		try:
+			self.message = opts["commit_message"]
+		except KeyError:
+			raise Exception("Please add commit message")
+			
+		self.add_branch = opts["add_branch"]
+		self.add_message = opts["add_message"]
 
-		self.message = message
-		self.add_message = add_message
-		self.add_branch = add_branch
+class auto_commit(options):
+
+	def __init__(self, opts):
+		"""
+		Initiates the auto commit class
+		:param opts: a dictionary containing the options
+		:type opts: dct
+		"""
+		
+		options.__init__(self, opts)
+		os.environ["PATH"] += os.pathsep + "../PortableGit/bin/"
 
 		self.g = git.cmd.Git(os.getcwd())
 		self.repo = Repo(os.getcwd())
