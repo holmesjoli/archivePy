@@ -23,7 +23,7 @@ class main(object):
         self.dm()
 
         ac = auto_commit(opts)
-        archive_files(self.commit, self.output_dir, self.archive_fls)
+        archive_files(ac.commit, self.output_dir, self.archive_fls)
 
     def dm(self):
         """
