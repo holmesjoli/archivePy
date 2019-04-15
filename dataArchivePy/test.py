@@ -16,7 +16,7 @@ class main(object):
                                 "col2": ["a", "b", "c", "d"]})
 
         self.output_dir = "./dataArchivePy/tests/test_archive"
-        self.archive_fls = ["data.csv"]
+        self.archive_fls = ["./dataArchivePy/tests/test_archive/data.csv"]
 
         self.dm()
 
@@ -30,7 +30,7 @@ class main(object):
 
         self.df_copy = self.df.copy()
         self.df_copy["new_col"] = np.where(self.df_copy["col1"] > 1, 1, 0)
-        self.df_copy.to_csv(os.path.join(self.output_dir, self.archive_fls[0]))
+        self.df_copy.to_csv(os.path.join(self.archive_fls[0]))
 
 if __name__ == "__main__":
 
