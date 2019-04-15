@@ -13,16 +13,19 @@ class ArchiveTestClass(unittest.TestCase, archive_folders):
         self.commit = "master_789hk4"
         self.output_pth = "./tests/test_archive/"
         self.archive_fls = ["./tests/test_data1.csv", "./tests/test_data2.csv"]
-        self.fl = "test_data1.csv"
+        self.fl = ".test_data1.zip"
 
         self.af = archive_files(self.commit, self.output_pth, self.archive_fls)
         self.archive_dirs = self.af.archive_dirs
         self.current_dir = self.af.current_dir
         self.archive_dir = self.af.archive_dir
         self.zipped_fl = "{}.zip".format(self.commit)
-        # self.ea = extract_archive(self.commit, self.output_pth, self.fl)
+
+        # self.ea = extract_archive(self.commit, self.archive_dir, self.fl)
 
         self.setUp()
+
+        import pdb; pdb.set_trace()
 
     def setUp(self):
 
@@ -49,9 +52,6 @@ class ArchiveTestClass(unittest.TestCase, archive_folders):
         self.af.create_archive()
         self.assertTrue(os.path.exists(os.path.join(self.archive_dir, self.zipped_fl)))
 
-        
-
-
-    # # def test_extract_archive(self):
+    # def test_extract_archive(self):
 
     #     self.assertTrue(hasattr(self.ea, "df"))
