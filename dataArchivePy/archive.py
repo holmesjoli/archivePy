@@ -51,9 +51,8 @@ class archive_files(archive_folders):
         """
         
         self.zipped_fl = "{}.zip".format(self.commit)
-        
-        shutil.make_archive(base_name = self.commit, format = "zip", root_dir = self.new_pth)
-        shutil.move(self.zipped_fl , os.path.join(self.output_pth, self.archive_dir, self.zipped_fl))
+        shutil.make_archive(base_name = self.commit, format = "zip", root_dir = self.current_dir)
+        shutil.move(self.zipped_fl , os.path.join(self.archive_dir, self.zipped_fl))
 
     def archive(self):
         """Combines all the archiving steps"""
