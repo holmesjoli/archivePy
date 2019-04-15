@@ -28,7 +28,7 @@ Deliverables/
         master_90r68d.zip
 ```
 
-### Commit and Archive
+### Commit and Archive Sample Code
 
 ```
 import os
@@ -76,6 +76,6 @@ if __name__ == "__main__":
 1. Naviate the repository's root directory
 2. In the command line type: `python dataArchivePy/test.py -ab -am -c "April Monthly"`
 
-* You must add `-c "Commit Message"` otherwise the script will throw an error message
+* Adding `-c "Commit Message"` is mandatory, otherwise the script will throw an error message
 * `--add_branch` (`-ab`) is an optional argument. Adding `-ab` will add the branch to the beginning of the archive zip filename. 
 * `--add_message` (`-am`) is an option argument. Adding `-am` will add the commit message to the end of the archive zip filename.

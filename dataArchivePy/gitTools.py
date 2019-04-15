@@ -39,8 +39,12 @@ class auto_commit(options):
 
 		self.g = git.cmd.Git(os.getcwd())
 		self.repo = Repo(os.getcwd())
-		self.add_commit()
-		self.parse_commit_result()
+		self.check_master()
+		if self.ui == '1': 
+			self.add_commit()
+			self.parse_commit_result()
+		else:
+			print("Exiting. Please switch to master branch.")
 
 	def check_master(self):
 		"""Checks to see if the master branch is active"""
@@ -48,15 +52,15 @@ class auto_commit(options):
 		self.branch = self.repo.active_branch.name
 		
 		if self.branch != "master":
-			ui = int(input("Master branch is not active. Continue? \n1:Yes \n2:No\n"))
+			self.ui = input("Master branch is not active. Continue? \n1:Yes \n2:No\n")
 
-			while(ui not in [1,2]): 
-				ui = input("Please select 1 or 2")
+			while(self.ui not in ['1', '2']): 
+				self.ui = input("Please select 1 or 2")
 		
 	def add_commit(self):
 		"""Adds and commits message then pushes to the branch it's on."""
 
-		self.check_master()
+		
 		self.g.add("--a")
 		self.commit_result = self.g.commit("--m", self.message, "--allow-empty")
 		self.g.push("origin", self.branch)
