@@ -21,7 +21,7 @@ class main(object):
         self.dm()
 
         ac = auto_commit(opts)
-        archive_files(ac.commit, self.output_dir, self.archive_fls)
+        archive_files(ac.commit, self.output_dir, self.archive_fls).archive()
 
     def dm(self):
         """
@@ -37,5 +37,3 @@ if __name__ == "__main__":
     opts = parseArguments()
 
     main(opts)
-
-    import pdb; pdb.set_trace()
