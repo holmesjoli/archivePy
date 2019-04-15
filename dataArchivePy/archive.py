@@ -41,7 +41,7 @@ class archive_files(archive_folders):
     
     def move_to_current(self):
         """Moves the files to the Current folder"""
-        
+        import pdb; pdb.set_trace()
         [os.remove(os.path.join(self.current_dir, fl)) for fl in os.listdir(self.current_dir)]
         [shutil.move(fl, os.path.join(self.current_dir, os.path.basename(fl))) for fl in self.archive_fls]
         
