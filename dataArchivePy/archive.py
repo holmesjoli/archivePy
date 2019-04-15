@@ -3,6 +3,8 @@ import shutil
 import pandas as pd
 import zipfile
 
+from utilsPy.folder_structure import create_dirs
+
 class archive_folders(object):
 
     def __init__(self):
@@ -33,18 +35,14 @@ class archive_files(archive_folders):
         self.archive_fls = archive_fls
 
         self.new_pth = os.path.join(self.output_pth, self.current_dir)
-        
+    
     def create_archive_str(self):
-        """
-        Creates the Archive Structure
-        """
-        
-        [os.mkdir(d) for d in self.archive_dirs if not os.path.isdir(self.output_pth)]
-        
+        """Creates the archive structure"""
+
+        create_dirs(self.archive_dirs)
+    
     def move_to_current(self):
-        """
-        Moves the files to the Current folder
-        """
+        """Moves the files to the Current folder"""
         
         [os.remove(os.path.join(self.new_pth, fl)) for fl in os.listdir(self.new_pth)]
         [shutil.move(fl, os.path.join(self.new_pth, fl)) for fl in self.archive_fls]
@@ -64,7 +62,6 @@ class archive_files(archive_folders):
         self.create_archive_str()
         self.move_to_current()
         self.create_archive()
-
 
 class extract_archive(object):
 
