@@ -43,3 +43,6 @@ df_copy["new_col"] = np.where(df_copy["col1"] > 1, 1, 0)
 
 
 ```
+
+1. Naviate the repositories root
+2. `python dataArchivePy/test.py -ab -am -c "April Monthly"`

@@ -7,31 +7,31 @@ from utilsPy.folder_structure import create_dirs, remove_files
 
 class archive_folders(object):
 
-    def __init__(self, output_pth):
+    def __init__(self, output_dir):
         """
         The folders to create in the archiving process
         """
         
-        self.archive_dir = os.path.join(output_pth, "Archive")
-        self.current_dir = os.path.join(output_pth, "Current")
+        self.output_dir = output_dir
+        self.archive_dir = os.path.join(self.output_dir, "Archive")
+        self.current_dir = os.path.join(self.output_dir, "Current")
         self.archive_dirs = [self.archive_dir, self.current_dir]
 
 class archive_files(archive_folders):
     
-    def __init__(self, commit, output_pth, archive_fls):
+    def __init__(self, commit, output_dir, archive_fls):
         """
         Writes archive fls out to the Current folder and archives the same files with a commit id
         :param commit: the commit id
         :type commit: str
-        :param output_pth: the path to create the file archive
-        :type output_pth: str
+        :param output_dir: the path to create the file archive
+        :type output_dir: str
         :param archive_fls: a list of the files to archive
         :type archive_fls: list
         """
         
-        archive_folders.__init__(self, output_pth)
+        archive_folders.__init__(self, output_dir)
         self.commit = commit
-        self.output_pth = output_pth
         self.archive_fls = archive_fls
     
     def create_archive_str(self):
@@ -63,21 +63,21 @@ class archive_files(archive_folders):
 
 class extract_archive(object):
 
-	def __init__(self, commit, pth, fl):
+	def __init__(self, commit, output_dir, fl):
 		"""
 		Parses an archive to extract a specific commit
 		:param commit: the commit id 
 		:type commit: str
-		:param pth: the path to the data archives
-		:type pth: str
+		:param output_dir: the path to the data archives
+		:type output_dir: str
 		:param fl: the file to extract from the archive
 		:type fl: str
 		"""
-		# import pdb; pdb.set_trace()
-		fls = os.listdir(pth)
+
+		fls = os.listdir(output_dir)
 		zip_archive = [fl for fl in fls if commit in fl][0]
 
-		archive = zipfile.ZipFile(os.path.join(pth, zip_archive), 'r')
+		archive = zipfile.ZipFile(os.path.join(output_dir, zip_archive), 'r')
 
 		if fl.endswith(".csv"):
 			self.df = pd.read_csv(archive.open(fl))
