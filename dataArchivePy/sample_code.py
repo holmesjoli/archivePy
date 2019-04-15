@@ -23,7 +23,12 @@ class main(object):
         self.dm()
 
         ac = auto_commit(opts)
-        archive_files(ac.commit, self.output_dir, self.archive_fls)
+
+        try:
+            self.commit = ac.commit
+            archive_files(self.commit, self.output_dir, self.archive_fls).archive()
+        except AttributeError:
+            pass
 
     def dm(self):
         """
