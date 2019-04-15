@@ -33,8 +33,6 @@ class archive_files(archive_folders):
         self.commit = commit
         self.output_pth = output_pth
         self.archive_fls = archive_fls
-
-        self.new_pth = os.path.join(self.output_pth, self.current_dir)
     
     def create_archive_str(self):
         """Creates the archive structure"""
@@ -44,8 +42,8 @@ class archive_files(archive_folders):
     def move_to_current(self):
         """Moves the files to the Current folder"""
         
-        [os.remove(os.path.join(self.new_pth, fl)) for fl in os.listdir(self.new_pth)]
-        [shutil.move(fl, os.path.join(self.new_pth, fl)) for fl in self.archive_fls]
+        [os.remove(os.path.join(self.current_dir, fl)) for fl in os.listdir(self.current_dir)]
+        [shutil.move(fl, os.path.join(self.current_dir, os.path.basename(fl))) for fl in self.archive_fls]
         
     def create_archive(self):
         """
