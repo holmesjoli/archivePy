@@ -74,8 +74,8 @@ if __name__ == "__main__":
 ```
 
 1. Naviate the repository's root directory
-2. In the command line type: `python dataArchivePy/test.py -ab -am -c "April Monthly"`
+2. In the command line type: `python dataArchivePy/test.py -b -m -c "April Monthly"`
 
 * Adding `-c "Commit Message"` is mandatory, otherwise the script will throw an error message
-* `--add_branch` (`-ab`) is an optional argument. Adding `-ab` will add the branch to the beginning of the archive zip filename. 
-* `--add_message` (`-am`) is an option argument. Adding `-am` will add the commit message to the end of the archive zip filename.
+* `--add_branch` (`-b`) is an optional argument. Adding `-b` will add the branch to the beginning of the archive zip filename. 
+* `--add_message` (`-m`) is an option argument. Adding `-m` will add the commit message to the end of the archive zip filename.

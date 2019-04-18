@@ -8,13 +8,13 @@ def parseArguments():
     parser = argparse.ArgumentParser(description = 'Arguments for Data Archiving', 
                                         formatter_class = argparse.RawTextHelpFormatter)
 
-    parser.add_argument('-ab', '--add_branch', action = 'store_true', 
+    parser.add_argument('-b', '--add_branch', action = 'store_true', 
                             help = textwrap.dedent('''\
                             Add the branch to the commit tag.
                             (default=%(default)s)
                             ''' ))
     
-    parser.add_argument('-am', '--add_message', action = 'store_true', 
+    parser.add_argument('-m', '--add_message', action = 'store_true', 
                             help = textwrap.dedent('''\
                             Add the message to the commit tag.
                             (default=%(default)s)
