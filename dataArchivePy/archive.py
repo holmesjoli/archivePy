@@ -7,13 +7,13 @@ from utilsPy.folder_structure import create_dirs, remove_files
 
 class archive_setUp(object):
 
-    def __init__(self, output_dir, archive_fls):
+    def __init__(self, output_dir, fls):
         """
         The folders to create in the archiving process
         """
         
         self.output_dir = output_dir
-        self.archive_fls = archive_fls
+        self.fls = fls
         self.archive_dir = os.path.join(self.output_dir, "Archive")
         self.current_dir = os.path.join(self.output_dir, "Current")
         self.archive_dirs = [self.archive_dir, self.current_dir]
@@ -27,20 +27,20 @@ class archive_setUp(object):
         """Moves the files to the Current folder"""
 
         [os.remove(os.path.join(self.current_dir, fl)) for fl in os.listdir(self.current_dir)]
-        [shutil.move(fl, os.path.join(self.current_dir, os.path.basename(fl))) for fl in self.archive_fls]
+        [shutil.move(fl, os.path.join(self.current_dir, os.path.basename(fl))) for fl in self.fls]
 
 class write_output(archive_setUp):
 
-    def __init__(self, output_dir, archive_fls):
+    def __init__(self, output_dir, fls):
         """
         Writes archive fls out to the Current folder
         :param output_dir: the path to create the file archive
         :type output_dir: str
-        :param archive_fls: a list of the files to archive
-        :type archive_fls: list
+        :param fls: a list of the files to archive
+        :type fls: list
         """
 
-        archive_setUp.__init__(self, output_dir, archive_fls)
+        archive_setUp.__init__(self, output_dir, fls)
 
     def run(self):
         """
@@ -52,18 +52,18 @@ class write_output(archive_setUp):
 
 class archive_output(archive_setUp):
     
-    def __init__(self, commit, output_dir, archive_fls):
+    def __init__(self, commit, output_dir, fls):
         """
         Writes archive fls out to the Current folder and archives the same files with a commit id
         :param commit: the commit id
         :type commit: str
         :param output_dir: the path to create the file archive
         :type output_dir: str
-        :param archive_fls: a list of the files to archive
-        :type archive_fls: list
+        :param fls: a list of the files to archive
+        :type fls: list
         """
         
-        archive_setUp.__init__(self, output_dir, archive_fls)
+        archive_setUp.__init__(self, output_dir, fls)
         self.commit = commit
             
     def create_archive(self):
