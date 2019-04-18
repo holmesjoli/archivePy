@@ -9,19 +9,11 @@ class options(object):
 	def __init__(self, opts):
 		"""
 		Initiates the options class
-		:param message: the commit message
-		:type message: string
-		:param add_message: indicator for if the message should be added to the commit
-		:type add_message: boolean
-		:param add_branch: indicator for if the branch name should be added to the commit
-		:type add_branch: boolean
+		Initiates the options class
+        :param opts: a dictionary of options
+        :type opts: dct
 		"""
-		
-		try:
-			self.message = opts["commit_message"]
-		except KeyError:
-			raise Exception("Please add commit message")
-			
+		self.message = opts["commit_message"]	
 		self.add_branch = opts["add_branch"]
 		self.add_message = opts["add_message"]
 
