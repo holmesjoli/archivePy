@@ -5,19 +5,52 @@ import zipfile
 
 from utilsPy.folder_structure import create_dirs, remove_files
 
-class archive_folders(object):
+class archive_setUp(object):
 
-    def __init__(self, output_dir):
+    def __init__(self, output_dir, archive_fls):
         """
         The folders to create in the archiving process
         """
         
         self.output_dir = output_dir
+        self.archive_fls = archive_fls
         self.archive_dir = os.path.join(self.output_dir, "Archive")
         self.current_dir = os.path.join(self.output_dir, "Current")
         self.archive_dirs = [self.archive_dir, self.current_dir]
 
-class archive_files(archive_folders):
+    def create_archive_str(self):
+        """Creates the archive structure"""
+
+        create_dirs(self.archive_dirs)
+    
+    def move_to_current(self):
+        """Moves the files to the Current folder"""
+
+        [os.remove(os.path.join(self.current_dir, fl)) for fl in os.listdir(self.current_dir)]
+        [shutil.move(fl, os.path.join(self.current_dir, os.path.basename(fl))) for fl in self.archive_fls]
+
+class write_output(archive_setUp):
+
+    def __init__(self, output_dir, archive_fls):
+        """
+        Writes archive fls out to the Current folder
+        :param output_dir: the path to create the file archive
+        :type output_dir: str
+        :param archive_fls: a list of the files to archive
+        :type archive_fls: list
+        """
+
+        archive_setUp.__init__(self, output_dir, archive_fls)
+
+    def run(self):
+        """
+        Writes out files to the current folder
+        """
+
+        self.create_archive_str()
+        self.move_to_current()
+
+class archive_output(archive_setUp):
     
     def __init__(self, commit, output_dir, archive_fls):
         """
@@ -30,31 +63,21 @@ class archive_files(archive_folders):
         :type archive_fls: list
         """
         
-        archive_folders.__init__(self, output_dir)
+        archive_setUp.__init__(self, output_dir, archive_fls)
         self.commit = commit
-        self.archive_fls = archive_fls
-    
-    def create_archive_str(self):
-        """Creates the archive structure"""
-
-        create_dirs(self.archive_dirs)
-    
-    def move_to_current(self):
-        """Moves the files to the Current folder"""
-
-        [os.remove(os.path.join(self.current_dir, fl)) for fl in os.listdir(self.current_dir)]
-        [shutil.move(fl, os.path.join(self.current_dir, os.path.basename(fl))) for fl in self.archive_fls]
-        
+            
     def create_archive(self):
         """
-        Copies files from the Current folder, adds them to the archive, and zips files using the commit id as the filename
+        Copies files from the Current folder
+        Adds them to the archive
+        Zips files using the commit id as the filename
         """
         
         self.zipped_fl = "{}.zip".format(self.commit)
         shutil.make_archive(base_name = self.commit, format = "zip", root_dir = self.current_dir)
         shutil.move(self.zipped_fl , os.path.join(self.archive_dir, self.zipped_fl))
 
-    def archive(self):
+    def run(self):
         """Combines all the archiving steps"""
 
         self.create_archive_str()
