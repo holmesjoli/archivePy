@@ -21,8 +21,6 @@ class ArchiveTestClass(unittest.TestCase, archive_folders):
         self.archive_dir = self.af.archive_dir
         self.zipped_fl = "{}.zip".format(self.commit)
 
-        # self.ea = extract_archive(self.commit, self.archive_dir, self.fl)
-
         self.setUp()
 
         import pdb; pdb.set_trace()
@@ -51,7 +49,3 @@ class ArchiveTestClass(unittest.TestCase, archive_folders):
         self.af.move_to_current()
         self.af.create_archive()
         self.assertTrue(os.path.exists(os.path.join(self.archive_dir, self.zipped_fl)))
-
-    # def test_extract_archive(self):
-
-    #     self.assertTrue(hasattr(self.ea, "df"))
