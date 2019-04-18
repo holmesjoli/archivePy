@@ -2,50 +2,41 @@ import unittest
 import os
 
 from utilsPy.folder_structure import remove_dirs, create_files
-from dataArchivePy.archive import archive_files, extract_archive, archive_folders
+from dataArchivePy.archive import archive_setUp, archive_output, write_output
 
-class ArchiveTestClass(unittest.TestCase, archive_folders):
+class ArchiveTestClass(unittest.TestCase, archive_setUp):
  
     def __init__(self, *args, **kwargs):
  
         super(ArchiveTestClass, self).__init__(*args, **kwargs)
 
         self.commit = "master_789hk4"
-        self.output_pth = "./tests/test_archive/"
-        self.archive_fls = ["./tests/test_data1.csv", "./tests/test_data2.csv"]
-        self.fl = ".test_data1.zip"
-
-        self.af = archive_files(self.commit, self.output_pth, self.archive_fls)
-        self.archive_dirs = self.af.archive_dirs
-        self.current_dir = self.af.current_dir
-        self.archive_dir = self.af.archive_dir
         self.zipped_fl = "{}.zip".format(self.commit)
+        self.output_pth = "./tests/test_archive/"
+        self.fls = ["./tests/test_data1.csv", "./tests/test_data2.csv"]
 
-        self.setUp()
-
-        import pdb; pdb.set_trace()
-
-    def setUp(self):
-
+        archive_setUp.__init__(self, self.output_pth, self.fls)
         remove_dirs(self.archive_dirs)
 
     def test_create_archive_str(self):
         
-        self.af.create_archive_str()
+        self.create_archive_str()
         self.assertTrue(all([os.path.exists(d) for d in self.archive_dirs]))
         remove_dirs(self.archive_dirs)
 
     def test_move_to_current(self):
         
-        create_files(self.archive_fls)
-        self.assertTrue(all([os.path.exists(d) for d in self.archive_fls]))
-        self.af.create_archive_str()
-        self.af.move_to_current()
-        self.assertTrue(all([os.path.exists(os.path.join(self.current_dir, os.path.basename(d))) for d in self.archive_fls]))
+        create_files(self.fls)
+        self.assertTrue(all([os.path.exists(d) for d in self.fls]))
+        self.create_archive_str()
+        self.move_to_current()
+        self.assertTrue(all([os.path.exists(os.path.join(self.current_dir, os.path.basename(d))) for d in self.fls]))
 
     def test_create_archive(self):
-        create_files(self.archive_fls)
-        self.af.create_archive_str()
-        self.af.move_to_current()
-        self.af.create_archive()
+        create_files(self.fls)
+        self.create_archive_str()
+        self.move_to_current()
+
+        ca = archive_output(self.commit, self.output_pth, self.fls)
+        ca.create_archive()
         self.assertTrue(os.path.exists(os.path.join(self.archive_dir, self.zipped_fl)))
