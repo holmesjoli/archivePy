@@ -48,6 +48,8 @@ class auto_commit(options):
 
 			while(self.ui not in ['1', '2']): 
 				self.ui = input("Please select 1 or 2")
+		else:
+			self.ui = '1'
 		
 	def add_commit(self):
 		"""Adds and commits message then pushes to the branch it's on."""
