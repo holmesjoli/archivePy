@@ -30,52 +30,12 @@ Deliverables/
 
 ### Commit and Archive Sample Code
 
-```
-import os
-import pandas as pd
-import numpy as np
+Sample Code is located `./dataArchivePy/dataArchivePy/sample_code.py`
 
-from dataArchivePy.archive import archive_files, extract_archive
-from dataArchivePy.gitTools import auto_commit
-from dataArchivePy.cli_args import parseArguments
+1. Navigate the repository's root directory, e.g. `cd dataArchivepy`
+2. To write out data to the Current folder type `python dataArchivePy/sample_code.py`
+3. To write out data to the Current folder and Archive the data type `python dataArchivePy -c "commit message"`
 
-class main(object):
-
-    def __init__(self, opts):
-        """
-        Initiates the main function, which does data management and then calls 
-        to autocommit and archive the data
-        """
-
-        self.df = pd.DataFrame({"col1": [1,2,3,4],
-                                "col2": ["a", "b", "c", "d"]})
-
-        self.output_dir = "./dataArchivePy/tests/test_archive"
-        self.archive_fls = ["./dataArchivePy/tests/test_archive/data.csv"]
-
-        self.dm()
-
-        ac = auto_commit(opts)
-        archive_files(ac.commit, self.output_dir, self.archive_fls).archive()
-
-    def dm(self):
-        """
-        Performs data management steps
-        """
-
-        self.df_copy = self.df.copy()
-        self.df_copy["new_col"] = np.where(self.df_copy["col1"] > 1, 1, 0)
-        self.df_copy.to_csv(os.path.join(self.archive_fls[0]))
-
-if __name__ == "__main__":
-
-    opts = parseArguments()
-    main(opts)
-```
-
-1. Naviate the repository's root directory
-2. In the command line type: `python dataArchivePy/test.py -b -m -c "April Monthly"`
-
-* Adding `-c "Commit Message"` is mandatory, otherwise the script will throw an error message
-* `--add_branch` (`-b`) is an optional argument. Adding `-b` will add the branch to the beginning of the archive zip filename. 
-* `--add_message` (`-m`) is an option argument. Adding `-m` will add the commit message to the end of the archive zip filename.
+* Adding the `--commit` (`-c`) command triggers the script to add the data/output to the Archive folder
+* Adding the `--add_branch` (`-b`) command is an optional argument. Including this command will add the branch name to the beginning of the archive zip filename. 
+* Adding the `--add_message` (`-m`) command is an optional argument. Including this command will add the message to the end of the archive zip filename. 
