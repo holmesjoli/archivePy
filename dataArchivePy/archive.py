@@ -4,6 +4,7 @@ import pandas as pd
 import zipfile
 
 from utilsPy.folder_structure import create_dirs, remove_files
+from utilsPy.config import read_yaml
 
 class archive_setUp(object):
 
@@ -14,8 +15,11 @@ class archive_setUp(object):
         
         self.output_dir = output_dir
         self.fls = fls
-        self.archive_dir = os.path.join(self.output_dir, "Archive")
-        self.current_dir = os.path.join(self.output_dir, "Current")
+
+        config = read_yaml("./config.yaml")
+
+        self.archive_dir = os.path.join(self.output_dir, config["archive_dirs"]["Archive"])
+        self.current_dir = os.path.join(self.output_dir, config["archive_dirs"]["Current"])
         self.archive_dirs = [self.archive_dir, self.current_dir]
 
     def create_archive_str(self):
