@@ -6,7 +6,7 @@ class archive_etl(object):
     
     def __init__(self, output_dir, fls):
         """
-        Initiates the options class
+        Initiates the ETL for archiving
         :param output_dir: the output directory
         :type output_dir: str
         :param fls: the files to move to Current folder
