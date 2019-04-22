@@ -3,9 +3,11 @@ import pandas as pd
 import numpy as np
 import sys
 import yaml
-dir(yaml)
-sys.path.append("D:/Shares/Working/Packages/Python/utilsPy")
 
+pth = os.path.abspath(os.path.dirname(__file__))
+sys.path.append(os.path.join(pth, "../../utilsPy"))
+
+from utilsPy.config import read_yaml
 from dataArchivePy.etl import archive_etl
 
 class main(object):
