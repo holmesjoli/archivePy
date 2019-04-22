@@ -16,7 +16,8 @@ class archive_setUp(object):
         self.output_dir = output_dir
         self.fls = fls
 
-        config = read_yaml("./config.yaml")
+        self.pth = os.path.abspath(os.path.dirname(__file__))
+        config = read_yaml(os.path.join(self.pth, "../config.yaml"))
 
         self.archive_dir = os.path.join(self.output_dir, config["archive_dirs"]["Archive"])
         self.current_dir = os.path.join(self.output_dir, config["archive_dirs"]["Current"])
