@@ -1,6 +1,10 @@
 import os
 import pandas as pd
 import numpy as np
+import sys
+import yaml
+dir(yaml)
+sys.path.append("D:/Shares/Working/Packages/Python/utilsPy")
 
 from dataArchivePy.etl import archive_etl
 
@@ -12,8 +16,9 @@ class main(object):
         to autocommit and archive the data
         """
 
-        self.output_dir = "./dataArchivePy/tests/test_archive"
-        self.fls = ["./dataArchivePy/tests/test_archive/data.csv"]
+        self.pth = os.path.abspath(os.path.dirname(__file__))
+        self.output_dir = os.path.join(self.pth, "./tests/test_archive")
+        self.fls = [os.path.join(self.output_dir, "data.csv")]
 
         self.dm()
 
