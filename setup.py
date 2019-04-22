@@ -13,6 +13,9 @@ setuptools.setup(
     long_description_content_type = "text/markdown",
     url = "https://github.com/holmesjoli/dataArchivePy",
     packages = setuptools.find_packages(),
-    install_requires = ["GitPython"]
+    install_requires = ["GitPython",
+                        "numpy",
+                        "pandas",
+                        "utilsPy"]
 )
 
