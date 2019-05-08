@@ -8,7 +8,7 @@ The dataArchivePy package combines several steps important to data archiving pur
 
 First, we commit our code and extract the branch, unique 6-character hash, and message to be used when naming the archive. 
 
-Next we run the archiving functions which create a directory structure that serves two functions a) easy access to the current data and b) an archive of data can be extracted using the unique 6-character hash. 
+Next we run the archiving functions which create a directory structure that serves two functions a) easy access to the current data and b) an archive of data can be extracted using the unique 6-character hash.
 
 ### Example File Structure
 
@@ -38,5 +38,5 @@ Sample Code is located `./dataArchivePy/dataArchivePy/sample_code.py`
 3. To write out data to the Current folder and Archive the data type `python dataArchivePy/sample_code.py -c "commit message"`
 
 * Adding the `--commit` (`-c`) command triggers the script to add the data/output to the Archive folder
-* Adding the `--add_branch` (`-b`) command is an optional argument. Including this command will add the branch name to the beginning of the archive zip filename. 
-* Adding the `--add_message` (`-m`) command is an optional argument. Including this command will add the message to the end of the archive zip filename. 
+* Adding the `--add_branch` (`-b`) command is an optional argument. Including this command will add the branch name to the beginning of the archive zip filename.
+* Adding the `--add_message` (`-m`) command is an optional argument. Including this command will add the message to the end of the archive zip filename.
