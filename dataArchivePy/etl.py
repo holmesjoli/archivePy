@@ -3,7 +3,7 @@ from dataArchivePy.gitTools import auto_commit
 from dataArchivePy.cli_args import parseArguments
 
 class archive_etl(object):
-    
+
     def __init__(self, output_dir, fls):
         """
         Initiates the ETL for archiving
@@ -12,7 +12,6 @@ class archive_etl(object):
         :param fls: the files to move to Current folder
         :type fls: list
         """
-        
         self.opts = parseArguments()
         self.output_dir = output_dir
         self.fls = fls
@@ -27,4 +26,3 @@ class archive_etl(object):
 
         else:
             write_output(output_dir, fls).run()
-

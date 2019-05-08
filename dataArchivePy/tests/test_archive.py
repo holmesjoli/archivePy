@@ -5,9 +5,9 @@ from utilsPy.folder_structure import remove_dirs, create_files
 from dataArchivePy.archive import archive_setUp, archive_output, write_output
 
 class ArchiveTestClass(unittest.TestCase, archive_setUp):
- 
+
     def __init__(self, *args, **kwargs):
- 
+
         super(ArchiveTestClass, self).__init__(*args, **kwargs)
 
         self.commit = "master_789hk4"
@@ -19,13 +19,11 @@ class ArchiveTestClass(unittest.TestCase, archive_setUp):
         remove_dirs(self.archive_dirs)
 
     def test_create_archive_str(self):
-        
         self.create_archive_str()
         self.assertTrue(all([os.path.exists(d) for d in self.archive_dirs]))
         remove_dirs(self.archive_dirs)
 
     def test_move_to_current(self):
-        
         create_files(self.fls)
         self.assertTrue(all([os.path.exists(d) for d in self.fls]))
         self.create_archive_str()
@@ -40,3 +38,4 @@ class ArchiveTestClass(unittest.TestCase, archive_setUp):
         ca = archive_output(self.commit, self.output_pth, self.fls)
         ca.create_archive()
         self.assertTrue(os.path.exists(os.path.join(self.archive_dir, self.zipped_fl)))
+        

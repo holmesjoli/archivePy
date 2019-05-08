@@ -14,10 +14,9 @@ class main(object):
 
     def __init__(self):
         """
-        Initiates the main function, which does data management and then calls 
+        Initiates the main function, which does data management and then calls
         to autocommit and archive the data
         """
-
         self.pth = os.path.abspath(os.path.dirname(__file__))
         self.output_dir = os.path.join(self.pth, "./tests/test_archive")
         self.fls = [os.path.join(self.output_dir, "data.csv")]
