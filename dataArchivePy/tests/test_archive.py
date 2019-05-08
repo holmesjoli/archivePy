@@ -2,7 +2,7 @@ import unittest
 import os
 
 from utilsPy.folder_structure import remove_dirs, create_files
-from dataArchivePy.archive import archive_setUp, archive_output, write_output
+from dataArchivePy.archive import archive_setUp, archive_output
 
 class ArchiveTestClass(unittest.TestCase, archive_setUp):
 

@@ -1,8 +1,6 @@
 import git
 from git import Repo
 import os
-import re
-import subprocess
 
 class options(object):
 
