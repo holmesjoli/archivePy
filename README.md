@@ -1,5 +1,7 @@
 # Data Archive Py
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/eb0770e299c0493e84c5054f441ac6b2)](https://www.codacy.com/app/holmesjoli/dataArchivePy?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=holmesjoli/dataArchivePy&amp;utm_campaign=Badge_Grade)
+
 ## Data Archiving and Versioning
 
 One issue that I've often faced in analytics is how to connect output (data, visualizations, and reports) with the code used to generate that output. The team will deliver output to the client/partner and then continue to develop the code base. If the client/partner has a specific question then the team has to back-track to figure out which code was used to create that particular output. A lot of teams archive their output use timestamps, e.g. data_20171019_124590. While this can be a good method for data archiving for some teams, this method doesn't easily allow an analyst to be able to backtrack and see which code created that specific output. This can also create issues if data is created and then used as an input farther downstream because it means that the filename is changing whenever the data are re-processed.
