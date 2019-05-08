@@ -33,10 +33,10 @@ Project/
 
 Sample Code is located `./dataArchivePy/dataArchivePy/sample_code.py`
 
-1. Navigate the repository's root directory, e.g. `cd dataArchivepy`
-2. To write out data to the Current folder type `python dataArchivePy/sample_code.py`
-3. To write out data to the Current folder and Archive the data type `python dataArchivePy/sample_code.py -c "commit message"`
+1.  Navigate the repository's root directory, e.g. `cd dataArchivepy`
+2.  To write out data to the Current folder type `python dataArchivePy/sample_code.py`
+3.  To write out data to the Current folder and Archive the data type `python dataArchivePy/sample_code.py -c "commit message"`
 
-* Adding the `--commit` (`-c`) command triggers the script to add the data/output to the Archive folder
-* Adding the `--add_branch` (`-b`) command is an optional argument. Including this command will add the branch name to the beginning of the archive zip filename.
-* Adding the `--add_message` (`-m`) command is an optional argument. Including this command will add the message to the end of the archive zip filename.
+-   Adding the `--commit` (`-c`) command triggers the script to add the data/output to the Archive folder
+-   Adding the `--add_branch` (`-b`) command is an optional argument. Including this command will add the branch name to the beginning of the archive zip filename.
+-   Adding the `--add_message` (`-m`) command is an optional argument. Including this command will add the message to the end of the archive zip filename.
