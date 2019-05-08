@@ -3,7 +3,7 @@ import shutil
 import pandas as pd
 import zipfile
 
-from utilsPy.folder_structure import create_dirs, remove_files
+from utilsPy.folder_structure import create_dirs
 from utilsPy.config import read_yaml
 
 class archive_setUp(object):

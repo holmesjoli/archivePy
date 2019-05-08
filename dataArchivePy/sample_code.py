@@ -2,12 +2,7 @@ import os
 import pandas as pd
 import numpy as np
 import sys
-import yaml
 
-pth = os.path.abspath(os.path.dirname(__file__))
-sys.path.append(os.path.join(pth, "../../utilsPy"))
-
-from utilsPy.config import read_yaml
 from dataArchivePy.etl import archive_etl
 
 class main(object):

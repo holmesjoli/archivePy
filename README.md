@@ -1,4 +1,4 @@
-# dataArchivePy
+# Data Archive Py
 
 ## Data Archiving and Versioning
 
@@ -12,20 +12,21 @@ Next we run the archiving functions which create a directory structure that serv
 
 ### Example File Structure
 
-```
-Data/
-    Processed/
-        Current/
-            data.csv
-            summary_data.csv
-        Archive/
-            master_90r68d.zip
-Deliverables/
-    Current/
-        fig1.png
-        fig2.png
-    Archive/
-        master_90r68d.zip
+```txt
+Project/
+|___Data/
+|   |___Processed/
+|       |___Current/
+|              data.csv
+|              summary_data.csv
+|       |___Archive/
+|                master_90r68d.zip
+|___Deliverables/
+|   |___Current/
+|       fig1.png
+|       fig2.png
+|   |___Archive/
+|       master_90r68d.zip
 ```
 
 ### Commit and Archive Sample Code
