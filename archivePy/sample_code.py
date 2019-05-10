@@ -2,7 +2,8 @@ import os
 import pandas as pd
 import numpy as np
 
-from dataArchivePy.etl import archive_etl
+from archivePy.etl import archive_etl
+
 
 class main(object):
 

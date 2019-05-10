@@ -26,7 +26,7 @@ dependencies:
   - wheel=0.33.1=py37_0
   - wincertstore=0.2=py37_0
   - pip:
-    - dataarchivepy==0.0.1
+    - archivepy==0.0.1
     - gitdb2==2.0.5
     - gitpython==2.1.11
     - pipenv==2018.11.26

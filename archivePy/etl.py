@@ -1,6 +1,6 @@
-from dataArchivePy.archive import write_output, archive_output
-from dataArchivePy.gitTools import auto_commit
-from dataArchivePy.cli_args import parseArguments
+from archivePy.archive import write_output, archive_output
+from archivePy.gitTools import auto_commit
+from archivePy.cli_args import parseArguments
 
 class archive_etl(object):
 
