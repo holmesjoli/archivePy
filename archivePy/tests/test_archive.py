@@ -13,8 +13,9 @@ class ArchiveTestClass(unittest.TestCase, archive_setUp):
 
         self.commit = "master_789hk4"
         self.zipped_fl = "{}.zip".format(self.commit)
-        self.output_pth = "./tests/test_archive/"
-        self.fls = ["./tests/test_data1.csv", "./tests/test_data2.csv"]
+        self.output_pth = "./archivePy/tests/test_archive/"
+        self.fls = ["./archivePy/tests/test_data1.csv", 
+                    "./archivePy/tests/test_data2.csv"]
 
         archive_setUp.__init__(self, self.output_pth, self.fls)
         remove_dirs(self.archive_dirs)
