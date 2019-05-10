@@ -1,6 +1,11 @@
 # Data Archive Py
 
+<!-- badges: start -->
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/eb0770e299c0493e84c5054f441ac6b2)](https://www.codacy.com/app/holmesjoli/archivePy?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=holmesjoli/archivePy&amp;utm_campaign=Badge_Grade)
+[![Build status](https://travis-ci.org/holmesjoli/archivePy.svg?branch=master)](https://travis-ci.org/holmesjoli/archivePy)
+[![Codecov test coverage](https://codecov.io/gh/holmesjoli/archivePy/branch/master/graph/badge.svg)](https://codecov.io/gh/holmesjoli/archivePy?branch=master)
+<!-- badges: end -->
+
 
 ## Data Archiving and Versioning
 
