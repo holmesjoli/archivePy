@@ -1,0 +1,22 @@
+-e git+https://github.com/holmesjoli/archivePy.git@2ddcfb0f0438745f7d36a60086a903519cfc1a85#egg=archivePy
+atomicwrites==1.3.0
+attrs==19.1.0
+certifi==2019.3.9
+colorama==0.4.1
+gitdb2==2.0.5
+GitPython==2.1.11
+mkl-fft==1.0.12
+mkl-random==1.0.2
+more-itertools==7.0.0
+numpy==1.16.3
+pandas==0.24.2
+pluggy==0.11.0
+py==1.8.0
+pytest==4.4.2
+python-dateutil==2.8.0
+pytz==2019.1
+PyYAML==5.1
+six==1.12.0
+smmap2==2.0.5
+-e git+https://github.com/holmesjoli/utilsPy.git@f8e29de51efc3fa8f6827d5a995fd318c7daebea#egg=utilsPy
+wincertstore==0.2
