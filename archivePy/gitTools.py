@@ -2,18 +2,18 @@ import git
 from git import Repo
 import os
 
+
 class options(object):
 
-	def __init__(self, opts):
+    def __init__(self, opts):
 		"""
-		Initiates the options class
-		Initiates the options class
+        Initiates the options class
         :param opts: a dictionary of options
         :type opts: dct
-		"""
-		self.message = opts["commit_message"]
-		self.add_branch = opts["add_branch"]
-		self.add_message = opts["add_message"]
+        """
+        self.message = opts["commit_message"]
+        self.add_branch = opts["add_branch"]
+        self.add_message = opts["add_message"]
 
 class auto_commit(options):
 
